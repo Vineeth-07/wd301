@@ -25,6 +25,7 @@ function App() {
             dueDate="5th March"
             assigneeName="Pavan"
           />
+          <a href="/">+ New Task </a>
         </div>
         <div className="box">
           <h1 className="h1">
@@ -40,6 +41,7 @@ function App() {
             completedAtDate="5th May"
             assigneeName="Nithin"
           />
+          <br></br>
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@
 .box{
   width: 350px;
   padding: 1.5rem;
+  height: 350px;
   margin: 50px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   border-radius: 5px;
@@ -25,4 +26,12 @@
 
 .p{
   font-size:20px;
+}
+
+a:hover{
+  background-color:lightcyan;
+}
+
+a:backgro{
+  background-color:lightcyan;
 }
