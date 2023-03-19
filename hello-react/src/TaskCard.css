@@ -1,0 +1,28 @@
+.TaskItem {
+    border: 1px solid #DFDFDF;
+    border-radius: 4px;
+    padding: 6px 8px;
+    margin-bottom: 6px;
+  }
+
+.box{
+  width: 350px;
+  padding: 1.5rem;
+  margin: 50px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  border-radius: 5px;
+  display: inline-block;
+}
+
+.main{
+  font-size:35px;
+}
+
+.h1{
+  font-size:25px;
+  text-align: center;
+}
+
+.p{
+  font-size:20px;
+}
