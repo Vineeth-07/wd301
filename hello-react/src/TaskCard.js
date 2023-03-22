@@ -1,6 +1,6 @@
 import "./TaskCard.css";
 const TaskCard = (props) => {
-  if (props.dueDate === "1st January" || props.dueDate === "5th March") {
+  if (props.dueDate) {
     return (
       <div className="TaskItem">
         <h2 className="text-xl font-bold">{props.title}</h2>
