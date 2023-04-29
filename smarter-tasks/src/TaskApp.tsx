@@ -27,7 +27,7 @@ class TaskApp extends React.Component<TaskAppProp, TaskAppState> {
       <div>
         <h1>Smarter Tasks</h1>
         <TaskForm addTask={this.addTask} />
-        <h1>Your Tasks</h1>
+        <h1>{this.state.tasks.length>0? "Your Tasks":""}</h1>
         <TaskList tasks={this.state.tasks} />
       </div>
     );
