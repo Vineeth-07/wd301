@@ -10,10 +10,10 @@ interface TaskProp {
 class Task extends React.Component<TaskProp> {
   render() {
     return (
-      <div className="TaskItem shadow-md border border-slate-100">
-        <h2 className="text-base font-bold my-1">{this.props.title}</h2>
-        <h2 className="text-base font-bold my-1">{this.props.description}</h2>
-        <h2 className="text-base font-bold my-1">{this.props.duedate}</h2>
+      <div className="TaskItem">
+        <h2 >Title: {this.props.title}</h2>
+        <h2 >{this.props.description? `Description: ${this.props.description}`:""}</h2>
+        <h2 >Due date: {this.props.duedate}</h2>
       </div>
     );
   }

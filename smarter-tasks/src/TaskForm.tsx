@@ -1,5 +1,7 @@
 import React from "react";
 import { TaskItem } from "./types";
+import "./TaskCard.css";
+
 interface TaskFormProps {
   addTask: (task: TaskItem) => void;
 }
@@ -45,11 +47,12 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
     return (
       <form onSubmit={this.addTask}>
         <div>
-        <label htmlFor="title">Title : </label>
+        <label htmlFor="title" className="required">Title : </label>
         <input
           type="text"
           name="title"
           id="todoTitle"
+          placeholder="Enter title"
           value={this.state.title}
           onChange={this.titleChanged}
           required
@@ -60,11 +63,12 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
           type="text"
           name="todoDescription"
           id="todoDescription"
+          placeholder="Enter description"
           value={this.state.description}
           onChange={this.descriptionChanged}
         />
         <br />
-        <label htmlFor="todoDueDate">Due date : </label>
+        <label htmlFor="todoDueDate" className="required">Due date : </label>
         <input
           type="date"
           name="todoDueDate"
@@ -77,6 +81,8 @@ class TaskForm extends React.Component<TaskFormProps, TaskFormState> {
         <button type="submit" id="addTaskButton">
           Add item
         </button>
+        <br />
+        <br />
       </form>
     );
   }
