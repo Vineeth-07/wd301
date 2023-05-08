@@ -1,8 +1,6 @@
-import React, { useEffect } from "react";
 import { TaskItem } from "./types";
-import TaskList from "./TaskList";
 import TaskForm from "./TaskForm";
-import "./TaskCard.css";
+import TaskList from "./TaskList";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
 interface TaskAppProp {}
@@ -17,15 +15,6 @@ const TaskApp = (props: TaskAppProp) => {
       tasks: [],
     }
   );
-  useEffect(() => {
-    const id = setTimeout(() => {
-      console.log(`Saved ${taskAppState.tasks.length} items to backend...`);
-    }, 5000);
-    return () => {
-      console.log("clear or cancel any existing network call");
-      clearTimeout(id);
-    };
-  }, [taskAppState.tasks]);
   const addTask = (task: TaskItem) => {
     setTaskAppState({ tasks: [...taskAppState.tasks, task] });
   };
@@ -36,11 +25,11 @@ const TaskApp = (props: TaskAppProp) => {
   };
   return (
     <div>
-      <h1>Smarter Tasks</h1>
-      <TaskForm addTask={addTask} />
-      <h1>{taskAppState.tasks.length > 0 ? "Your Tasks" : ""}</h1>
-      <TaskList tasks={taskAppState.tasks} deleteTask={deleteTask} />
-    </div>
+    <h1> <strong>Smarter Tasks</strong></h1>
+    <TaskForm addTask={addTask} />
+    <h1> <strong>{taskAppState.tasks.length > 0 ? "Your Tasks" : ""}</strong></h1>
+    <TaskList tasks={taskAppState.tasks} deleteTask={deleteTask} />
+  </div>
   );
 };
 
