@@ -15,6 +15,7 @@ const Task = (props: TaskProp) => {
       <h2>Due date: {props.dueDate}</h2>
       <button
         id="deleteTaskButton"
+        className="deleteTaskButton"
         onClick={() => {
           props.deleteTask(props.title);
         }}
