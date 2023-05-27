@@ -14,8 +14,7 @@ const TaskList = (props: Props) => {
         title={task.title}
         description={task.description}
         dueDate={task.dueDate}
-        deleteTask={props.deleteTask}
-      />
+        deleteTask={props.deleteTask} id={""}      />
     </li>
   ));
   return (
