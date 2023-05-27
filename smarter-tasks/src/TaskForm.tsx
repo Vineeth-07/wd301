@@ -41,10 +41,8 @@ const TaskForm = (props: TaskFormProps) => {
       alert("Task title or due date cannot be empty")
       return;
     }
-    console.log(formState.id)
-    const task = props.addTask({...formState, id : Math.random().toString()});
+    props.addTask({...formState, id : Math.random().toString()});
     setFormState({ id: "", title: "", description: "", dueDate: "" });
-    console.log(task)
   };
   return (
     <form onSubmit={addTask}>
