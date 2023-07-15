@@ -31,7 +31,7 @@ const SignupForm: React.FC = () => {
       localStorage.setItem('authToken', data.token);
     //   localStorage.setItem('userData', jsonData.user);
     localStorage.setItem('userData', data.data);
-    navigate("/dashboard")
+    navigate("/account")
     } catch (error) {
       console.error('SignUp failed:', error);
     }
