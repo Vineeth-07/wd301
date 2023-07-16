@@ -1,23 +1,38 @@
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { UserCircleIcon } from '@heroicons/react/24/outline'
-import Logo from "../../assets/images/logo.png"
-import { Link, useLocation } from "react-router-dom"
+import { useState, useContext, Fragment } from 'react'
+import { Disclosure, Menu, Transition, Switch } from "@headlessui/react";
+import { UserCircleIcon } from "@heroicons/react/24/outline";
+import Logo from "../../assets/images/logo.png";
+import { Link, useLocation } from "react-router-dom";
+import { ThemeContext } from "../../context/theme";
 
 const userNavigation = [
-  { name: 'Profile', href: '#' },
-  { name: 'Sign out', href: '/logout' },
-]
+  { name: "Profile", href: "#" },
+  { name: "Sign out", href: "/logout" },
+];
 
-const classNames = (...classes: string[]): string => classes.filter(Boolean).join(' ');
+const classNames = (...classes: string[]): string =>
+  classes.filter(Boolean).join(" ");
 
 const Appbar = () => {
-  const { pathname } = useLocation()
+  const { pathname } = useLocation();
+  const { theme, setTheme } = useContext(ThemeContext)
+  const [enabled, setEnabled] = useState(theme === 'dark')
+  const toggleTheme = () => {
+    let newTheme = ''
+    if (theme === 'light') {
+      newTheme = 'dark'
+    } else {
+      newTheme = 'light'
+    }
+    setEnabled(!enabled)
+    setTheme(newTheme)
+  }
+
 
   const navigation = [
-    { name: 'Projects', href: '/account/projects', current: false },
-    { name: 'Members', href: '/account/members', current: false },
-  ]
+    { name: "Projects", href: "/account/projects", current: false },
+    { name: "Members", href: "/account/members", current: false },
+  ];
 
   return (
     <>
@@ -27,16 +42,12 @@ const Appbar = () => {
             <div className="flex h-16 items-center justify-between">
               <div className="flex items-center">
                 <div className="flex-shrink-0">
-                    <img
-                    className="h-8"
-                    src={Logo}
-                    alt="Smarter Tasks"
-                  />
+                  <img className="h-8" src={Logo} alt="Smarter Tasks" />
                 </div>
                 <div className="hidden md:block">
                   <div className="ml-10 flex items-baseline space-x-4">
-                    {navigation.map((item) => { 
-                      const isCurrent = pathname.includes(item.href)
+                    {navigation.map((item) => {
+                      const isCurrent = pathname.includes(item.href);
 
                       return (
                         <Link
@@ -44,24 +55,41 @@ const Appbar = () => {
                           to={item.href}
                           className={classNames(
                             isCurrent
-                              ? 'bg-slate-50 text-blue-700'
-                              : 'text-slate-500 hover:text-blue-600',
-                            'rounded-md px-3 py-2 text-sm font-medium'
+                              ? "bg-slate-50 text-blue-700"
+                              : "text-slate-500 hover:text-blue-600",
+                            "rounded-md px-3 py-2 text-sm font-medium"
                           )}
-                          aria-current={isCurrent ? 'page' : undefined}
+                          aria-current={isCurrent ? "page" : undefined}
                         >
                           {item.name}
                         </Link>
-                    )})}
+                      );
+                    })}
                   </div>
                 </div>
               </div>
               <div className="hidden md:block">
                 <div className="ml-4 flex items-center md:ml-6">
+                  <Switch
+                    checked={enabled}
+                    onChange={toggleTheme}
+                    className={`${enabled ? "bg-slate-400" : "bg-slate-700"}
+              relative inline-flex h-[24px] w-[60px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+                  >
+                    <span className="sr-only">Use setting</span>
+                    <span
+                      aria-hidden="true"
+                      className={`${enabled ? "translate-x-9" : "translate-x-0"}
+                pointer-events-none inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+                    />
+                  </Switch>
                   <Menu as="div" className="relative ml-3">
                     <div>
                       <Menu.Button className="rounded-full bg-white p-1 text-gray-400 hover:text-blue-600">
-                        <UserCircleIcon className="h-6 w-6" aria-hidden="true" />
+                        <UserCircleIcon
+                          className="h-6 w-6"
+                          aria-hidden="true"
+                        />
                       </Menu.Button>
                     </div>
                     <Transition
@@ -80,8 +108,8 @@ const Appbar = () => {
                               <a
                                 href={item.href}
                                 className={classNames(
-                                  active ? 'bg-gray-100' : '',
-                                  'block px-4 py-2 text-sm text-gray-700'
+                                  active ? "bg-gray-100" : "",
+                                  "block px-4 py-2 text-sm text-gray-700"
                                 )}
                               >
                                 {item.name}
@@ -99,7 +127,7 @@ const Appbar = () => {
         )}
       </Disclosure>
     </>
-  )
-}
+  );
+};
 
 export default Appbar;
