@@ -4,16 +4,9 @@ import "./App.css";
 import router from "./routes"
 import { ThemeContext } from "./context/theme";
 const App = () => {
-  const currentTheme = useContext(ThemeContext)
-  useEffect(() => {
-    if(currentTheme.theme === 'dark'){
-      document.documentElement.classList.add('dark')
-    }else{
-      document.documentElement.classList.remove('dark')
-    }
-  }, [currentTheme.theme])
+  const {theme} = useContext(ThemeContext)
   return (
-    <div>
+    <div className={`h-full w-full mx-auto py-2 ${theme === "dark" ? "dark" : ""}`}>
       <RouterProvider router={router} />
     </div>
   );
