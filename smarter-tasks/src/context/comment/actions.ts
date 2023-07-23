@@ -1,5 +1,5 @@
 import { API_ENDPOINT } from "../../config/constants";
-import { CommentsDispatch } from "./context";
+import { CommentsDispatch, CommentListAvailableAction } from "./types";
 
 export const fetchComments = async (
   dispatch: CommentsDispatch,
@@ -8,7 +8,7 @@ export const fetchComments = async (
 ) => {
   const token = localStorage.getItem("authToken") ?? "";
   try {
-    dispatch({ type: "FETCH_TASKS_COMMENTS_REQUEST" });
+    dispatch({ type: CommentListAvailableAction.FETCH_TASKS_COMMENTS_REQUEST });
     const response = await fetch(
       `${API_ENDPOINT}/projects/${projectId}/tasks/${taskId}/comments`,
       {
@@ -24,13 +24,13 @@ export const fetchComments = async (
     }
     const data = await response.json();
     dispatch({
-      type: "FETCH_TASKS_COMMENTS_SUCCESS",
+      type: CommentListAvailableAction.FETCH_TASKS_COMMENTS_SUCCESS,
       payload: data,
     });
   } catch (error) {
     console.error("Operation failed:", error);
     dispatch({
-      type: "FETCH_TASKS_COMMENTS_FAILURE",
+      type: CommentListAvailableAction.FETCH_TASKS_COMMENTS_FAILURE,
       payload: "Unable to load comments",
     });
   }
@@ -44,7 +44,7 @@ export const addComment = async (
 ) => {
   const token = localStorage.getItem("authToken") ?? "";
   try {
-    dispatch({ type: "ADD_COMMENT_REQUEST" });
+    dispatch({ type: CommentListAvailableAction.ADD_COMMENT_REQUEST });
     const response = await fetch(
       `${API_ENDPOINT}/projects/${projectId}/tasks/${taskId}/comments`,
       {
@@ -60,12 +60,12 @@ export const addComment = async (
     if (!response.ok) {
       throw new Error("Failed to create comment");
     }
-    dispatch({ type: "ADD_COMMENT_SUCCESS" });
+    dispatch({ type: CommentListAvailableAction.ADD_COMMENT_SUCCESS });
     fetchComments(dispatch, projectId, taskId);
   } catch (error) {
     console.error("Operation failed:", error);
     dispatch({
-      type: "ADD_COMMENT_FAILURE",
+      type: CommentListAvailableAction.ADD_COMMENT_FAILURE,
       payload: "Unable to create comment",
     });
   }

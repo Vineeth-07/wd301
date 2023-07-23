@@ -7,7 +7,7 @@ import { updateTask } from "../../context/task/actions";
 import CheckIcon from "@heroicons/react/24/outline/CheckIcon";
 import { useMembersState } from "../../context/members/context";
 import Comments from "./Comments";
-import { fetchComments } from "../../context/comment/action";
+import { fetchComments } from "../../context/comment/actions";
 import {
   useCommentsDispatch,
   useCommentsState,
